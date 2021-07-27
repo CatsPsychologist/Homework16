@@ -1,46 +1,35 @@
-const form = document.getElementById('form-example');
-console.log(form)
+// const form = document.getElementById('form-example');
+// console.log(form)
 
-form.addEventListener("submit", function (event){
+document.getElementById('form-example')
+    .addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    event.preventDefault()
+        let inputs = event.target.querySelectorAll('input, textarea, select');
 
-    let data = event.target.querySelectorAll('input, select, textarea')
+        let values = {};
 
-    let values = {}
-
-    data.forEach(function (item){
-
-        values[item.name] = item.value
-    })
-
+        inputs.forEach(function (item)  {
+            values[item.name] = item.value;
+        })
+        localStorage.setItem('form', JSON.stringify(values));
+    });
 
 
-    // let jsArr = JSON.stringify(values)
-
-    localStorage.setItem('info',JSON.stringify(values))
-
-    // stringify => parse
-    // console.log(jsArr)
-        console.log(values)
-    // console.log(data)
-    // console.log(event.target)
-})
-
-document.addEventListener('DOMContentLoaded',function (){
-
+document.addEventListener('DOMContentLoaded', function () {
     if(!localStorage.form) return;
 
-    let values = JSON.parse(localStorage.form)
+    let values = JSON.parse(localStorage.form);
 
-    let inputs = document.querySelectorAll('#form-example input, #form-example textarea, #form-example select')
-
+    let inputs = document.querySelectorAll('#form-example input, #form-example textarea, #form-example select');
 
     for(let input of inputs) {
         input.value = values[input.name]
     }
 
+
     console.log(inputs)
+
 
 })
 
