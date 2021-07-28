@@ -1,8 +1,7 @@
-// const form = document.getElementById('form-example');
+const form = document.getElementById('form-example');
 // console.log(form)
 
-document.getElementById('form-example')
-    .addEventListener('submit', function (event) {
+form.addEventListener('submit', function (event) {
         event.preventDefault();
 
         let inputs = event.target.querySelectorAll('input, textarea, select');
@@ -23,6 +22,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let inputs = document.querySelectorAll('#form-example input, #form-example textarea, #form-example select');
 
+    let checkBox = document.querySelector('input[type = checkbox]');
+    console.log(values[checkBox.name])
+    console.log(checkBox)
+
+    if(values[checkBox.name] === 'on'){
+        checkBox.checked = true;
+        checkBox.setAttribute('checked','checked')
+    }
+
+
     for(let input of inputs) {
         input.value = values[input.name]
     }
@@ -32,5 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 })
+
+
 
 
